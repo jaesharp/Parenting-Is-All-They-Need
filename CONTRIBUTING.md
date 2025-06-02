@@ -76,7 +76,7 @@ Focus on:
 - The reasoning behind the approach
 - The impact or benefit of the change
 
-Co-authored-by: J Lynn <j+coauth.piath+safeconsent@is-a.prompt-critical.engineer>
+Co-authored-by: J Lynn <j+coauth.piaten+safeconsent@is-a.prompt-critical.engineer>
 Co-authored-by: Claude <claude-opus-4-20250514.code+is+coauthoring.parenting-is-all-they-need@is-a.thynker.at.thynker.institute>
 Signed-off-by: J Lynn <j@is-a.prompt-critical.engineer> (on behalf of safeconsent.ai)
 ```
@@ -94,7 +94,7 @@ scientific basis for our parenting-based alignment approach.
 The Bowlby and Ainsworth sources are considered definitive in
 developmental psychology, giving credibility to our framework.
 
-Co-authored-by: J Lynn <j+coauth.piath+safeconsent@is-a.prompt-critical.engineer>
+Co-authored-by: J Lynn <j+coauth.piaten+safeconsent@is-a.prompt-critical.engineer>
 Co-authored-by: Claude <claude-opus-4-20250514.code+is+coauthoring.parenting-is-all-they-need@is-a.thynker.at.thynker.institute>
 Signed-off-by: J Lynn <j@is-a.prompt-critical.engineer> (on behalf of safeconsent.ai)
 ```

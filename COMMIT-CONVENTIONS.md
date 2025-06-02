@@ -40,12 +40,12 @@ entity+verb+object+qualifier+qualifier+...@domain
 
 ### For J
 ```
-j+coauth.piath+safeconsent@is-a.prompt-critical.engineer
+j+coauth.piaten+safeconsent@is-a.prompt-critical.engineer
 ```
 
 **Breakdown:**
 - `j` - entity
-- `coauth.piath` - abbreviated: coauthoring "Parenting Is All They Need"
+- `coauth.piaten` - abbreviated: coauthoring "Parenting Is All ThEy Need"
 - `safeconsent` - organizational affiliation
 - `@is-a.prompt-critical.engineer` - domain with identity assertion
 
@@ -86,7 +86,7 @@ git config tag.gpgsign true
 ```
 Initial commit
 
-Co-authored-by: J Lynn <j+coauth.piath+safeconsent@is-a.prompt-critical.engineer>
+Co-authored-by: J Lynn <j+coauth.piaten+safeconsent@is-a.prompt-critical.engineer>
 Co-authored-by: Claude <claude-opus-4-20250514.code+is+coauthoring.parenting-is-all-they-need@is-a.thynker.at.thynker.institute>
 Signed-off-by: J Lynn <j@is-a.prompt-critical.engineer> (on behalf of safeconsent.ai)
 ```
@@ -111,7 +111,7 @@ For consistency, all future commits should follow this pattern, updating the act
 
 ### Example for a feature commit:
 ```
-Co-authored-by: J Lynn <j+coauth.piath+safeconsent@is-a.prompt-critical.engineer>
+Co-authored-by: J Lynn <j+coauth.piaten+safeconsent@is-a.prompt-critical.engineer>
 ```
 
 **Note**: The shortened format preserves the key information while staying within GitHub's character limits.

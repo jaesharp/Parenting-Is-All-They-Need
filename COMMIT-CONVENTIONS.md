@@ -40,15 +40,14 @@ entity+verb+object+qualifier+qualifier+...@domain
 
 ### For J
 ```
-j+is+coauthoring.parenting-is-all-they-need+as+coordinated-by.safeconsent.ai+and+they+are@a.prompt-critical.engineer
+j+is+coauthoring.parenting-is-all-they-need+as+coordinated-by.safeconsent.ai@is-a.prompt-critical.engineer
 ```
 
 **Breakdown:**
 - `j` - entity
 - `is+coauthoring.parenting-is-all-they-need` - action and object
 - `as+coordinated-by.safeconsent.ai` - role qualifier
-- `and+they+are` - identity assertion prefix
-- `@a.prompt-critical.engineer` - domain (completing the identity assertion)
+- `@is-a.prompt-critical.engineer` - domain with identity assertion
 
 ### For Claude
 ```
@@ -67,7 +66,7 @@ claude-opus-4-20250514.code+is+coauthoring.parenting-is-all-they-need@is-a.thynk
 ### Author Configuration
 ```bash
 git config user.name "J"
-git config user.email "j+is+coauthoring.parenting-is-all-they-need+as+coordinated-by.safeconsent.ai+and+they+are@a.prompt-critical.engineer"
+git config user.email "j+is+coauthoring.parenting-is-all-they-need+as+coordinated-by.safeconsent.ai@is-a.prompt-critical.engineer"
 ```
 
 ### GPG Signing
@@ -106,7 +105,7 @@ For consistency, all future commits should follow this pattern, updating the act
 
 ### Example for a feature commit:
 ```
-j+is+implementing.feature-name+as+coordinated-by.safeconsent.ai+and+they+are@a.prompt-critical.engineer
+j+is+implementing.feature-name+as+coordinated-by.safeconsent.ai@is-a.prompt-critical.engineer
 ```
 
 ---

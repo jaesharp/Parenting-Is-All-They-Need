@@ -76,11 +76,12 @@ Focus on:
 - The reasoning behind the approach
 - The impact or benefit of the change
 
-Co-authored-by: Claude <claude-opus-4-20250514.code+is+verb.object@is-a.thynker.at.thynker.institute>
+Co-authored-by: J. <j+is+coauthoring.parenting-is-all-they-need+as+coordinated-by.safeconsent.ai@is-a.prompt-critical.engineer>
+Co-authored-by: Claude <claude-opus-4-20250514.code+is+coauthoring.parenting-is-all-they-need@is-a.thynker.at.thynker.institute>
 Signed-off-by: J. <j@is-a.prompt-critical.engineer> (on behalf of safeconsent.ai)
 ```
 
-Note: The verb and object in the email address should reflect the actual action taken (e.g., `adding.citations`, `updating.documentation`, `implementing.feature`).
+Note: The email addresses reflect authors' roles in the project and should remain consistent across commits. See `COMMIT-CONVENTIONS.md` for the full list.
 
 **Example**:
 ```
@@ -93,7 +94,8 @@ scientific basis for our parenting-based alignment approach.
 The Bowlby and Ainsworth sources are considered definitive in
 developmental psychology, giving credibility to our framework.
 
-Co-authored-by: Claude <claude-opus-4-20250514.code+is+adding.citations@is-a.thynker.at.thynker.institute>
+Co-authored-by: J. <j+is+coauthoring.parenting-is-all-they-need+as+coordinated-by.safeconsent.ai@is-a.prompt-critical.engineer>
+Co-authored-by: Claude <claude-opus-4-20250514.code+is+coauthoring.parenting-is-all-they-need@is-a.thynker.at.thynker.institute>
 Signed-off-by: J. <j@is-a.prompt-critical.engineer> (on behalf of safeconsent.ai)
 ```
 

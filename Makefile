@@ -15,13 +15,29 @@ TECTONIC_FLAGS = --keep-logs --keep-intermediates
 .PHONY: all
 all: pdf
 
-# Build PDF with Tectonic
+# Build PDF with Tectonic (original ACM version - requires ACM class)
 .PHONY: pdf
 pdf: $(MAIN).tex
-	@echo "Building PDF with Tectonic..."
+	@echo "Building PDF with Tectonic (ACM version)..."
 	@mkdir -p $(OUTPUT_DIR)
-	@tectonic $(TECTONIC_FLAGS) -o $(OUTPUT_DIR) $(MAIN).tex
-	@echo "PDF built successfully: $(OUTPUT_DIR)/main.pdf"
+	@tectonic $(TECTONIC_FLAGS) -o $(OUTPUT_DIR) $(MAIN).tex || echo "Note: ACM class file needed"
+	@echo "PDF build attempted: $(OUTPUT_DIR)/main.pdf"
+
+# Build PDF with AMS style (works with Tectonic bundle)
+.PHONY: pdf-ams
+pdf-ams: article/main-ams.tex
+	@echo "Building PDF with AMS style..."
+	@mkdir -p $(OUTPUT_DIR)
+	@cd article && tectonic $(TECTONIC_FLAGS) -o ../$(OUTPUT_DIR) main-ams.tex
+	@echo "AMS PDF built successfully: $(OUTPUT_DIR)/main-ams.pdf"
+
+# Build simplified PDF (article class)
+.PHONY: pdf-simple
+pdf-simple: article/main-simple.tex
+	@echo "Building simplified PDF..."
+	@mkdir -p $(OUTPUT_DIR)
+	@cd article && tectonic $(TECTONIC_FLAGS) -o ../$(OUTPUT_DIR) main-simple.tex
+	@echo "Simple PDF built successfully: $(OUTPUT_DIR)/main-simple.pdf"
 
 # Build with bibtex support
 .PHONY: full
@@ -96,23 +112,88 @@ check-deps:
 	@echo "Note: For LaTeX validation, consider: tectonic --print for verbose output"
 	@echo "Core dependencies satisfied"
 
+# Run all tests (lint + build)
+.PHONY: test
+test: lint pdf-ams
+	@echo "All tests completed"
+
+# Lint LaTeX files
+.PHONY: lint
+lint:
+	@echo "Running LaTeX linters..."
+	@if command -v chktex >/dev/null 2>&1; then \
+		find article/sections -name "*.tex" -exec chktex -q {} \; || true; \
+	else \
+		echo "ChkTeX not installed, skipping"; \
+	fi
+	@if command -v lacheck >/dev/null 2>&1; then \
+		find article -name "*.tex" -exec lacheck {} \; || true; \
+	else \
+		echo "lacheck not installed, skipping"; \
+	fi
+
+# Test GitHub Actions locally with act (requires act and docker/podman)
+.PHONY: test-ci
+test-ci:
+	@echo "Testing GitHub Actions workflow..."
+	@if command -v act >/dev/null 2>&1; then \
+		act -l; \
+		echo "Run 'act -j build' to test the build job"; \
+		echo "Run 'act -j lint' to test the lint job"; \
+	else \
+		echo "act not installed. Install from: https://github.com/nektos/act"; \
+		echo "Alternatively, use 'make test' for local testing"; \
+	fi
+
+# Check for common LaTeX issues in build output
+.PHONY: check-log
+check-log:
+	@echo "Checking build logs for issues..."
+	@if [ -f "$(OUTPUT_DIR)/main-ams.log" ]; then \
+		echo "=== Checking for undefined references ==="; \
+		grep -i "undefined" $(OUTPUT_DIR)/*.log 2>/dev/null || echo "No undefined references"; \
+		echo "=== Checking for overfull boxes ==="; \
+		grep -i "overfull" $(OUTPUT_DIR)/*.log 2>/dev/null | head -10 || echo "No overfull boxes"; \
+		echo "=== Checking for UTF-8 issues ==="; \
+		grep -i "Missing character" $(OUTPUT_DIR)/*.log 2>/dev/null || echo "No UTF-8 issues"; \
+	else \
+		echo "No log files found. Build the document first."; \
+	fi
+
+# Quick build test (builds all versions)
+.PHONY: test-build
+test-build: pdf-ams pdf-simple
+	@echo "Test builds completed"
+	@ls -la $(OUTPUT_DIR)/*.pdf 2>/dev/null || echo "No PDFs found"
+
 # Help
 .PHONY: help
 help:
-	@echo "AI Alignment as Responsible Parenting - Article Build System"
+	@echo "Parenting Is All They Need - Article Build System"
 	@echo ""
-	@echo "Available targets:"
-	@echo "  make pdf        - Build PDF (default)"
-	@echo "  make full       - Build PDF with bibliography"
-	@echo "  make submission - Create submission package"
-	@echo "  make wordcount  - Show approximate word count"
-	@echo "  make clean      - Remove build artifacts"
-	@echo "  make distclean  - Remove all generated files"
-	@echo "  make validate   - Check LaTeX syntax"
-	@echo "  make newsection - Create a new section file"
-	@echo "  make watch      - Continuous compilation on changes"
-	@echo "  make check-deps - Verify required tools are installed"
-	@echo "  make help       - Show this help message"
+	@echo "Build targets:"
+	@echo "  make pdf         - Build PDF with ACM class (requires acmart.cls)"
+	@echo "  make pdf-ams     - Build PDF with AMS style (works out of box)"
+	@echo "  make pdf-simple  - Build simplified PDF (article class)"
+	@echo "  make full        - Build PDF with bibliography"
+	@echo "  make submission  - Create submission package"
+	@echo ""
+	@echo "Testing targets:"
+	@echo "  make test        - Run lint and build tests"
+	@echo "  make test-build  - Test all build variants"
+	@echo "  make lint        - Run LaTeX linters"
+	@echo "  make check-log   - Check build logs for issues"
+	@echo "  make test-ci     - Test GitHub Actions locally (requires act)"
+	@echo ""
+	@echo "Utility targets:"
+	@echo "  make wordcount   - Show approximate word count"
+	@echo "  make clean       - Remove build artifacts"
+	@echo "  make distclean   - Remove all generated files"
+	@echo "  make validate    - Check LaTeX syntax"
+	@echo "  make newsection  - Create a new section file"
+	@echo "  make watch       - Continuous compilation on changes"
+	@echo "  make check-deps  - Verify required tools are installed"
+	@echo "  make help        - Show this help message"
 
 # Install dependencies (macOS with Homebrew)
 .PHONY: install-deps-mac

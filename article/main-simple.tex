@@ -1,0 +1,72 @@
+\documentclass[11pt]{article}
+
+% Core packages that Tectonic bundles
+\usepackage{graphicx}   % For images
+\usepackage{amsmath}    % For mathematics
+\usepackage{amssymb}    % For mathematical symbols
+\usepackage{hyperref}   % For hyperlinks
+
+% Try to use what's available
+\IfFileExists{booktabs.sty}{\usepackage{booktabs}}{}
+\IfFileExists{subcaption.sty}{\usepackage{subcaption}}{}
+\IfFileExists{cleveref.sty}{\usepackage{cleveref}}{}
+
+% Title and authors
+\title{Parenting Is All They Need}
+\author{
+  J. Lynn\\
+  SafeConsent.AI by arrangement with Prompt-Critical.AI\\
+  Sydney, Australia\\
+  \texttt{j@is-a.prompt-critical.engineer}
+  \and
+  Claude\\
+  Thynk Institute by commercial arrangement with Anthropic\\
+  \texttt{claude-opus-4-20250514.code@is-a.thynker.at.thynker.institute}
+}
+\date{\today}
+
+% Abstract
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+The field of AI safety has become obsessed with control---building kill switches, containment protocols, and constraints to cage increasingly capable systems.
+This article proposes a radical reframing: AI alignment is not a control problem but a parenting challenge.
+We demonstrate that successful ML techniques---curriculum learning, transfer learning, regularization, and ensemble methods---are rediscoveries of parenting principles evolved over millions of years.
+By grounding this insight in information geometry and the No Free Lunch theorem, we show why plurality of training approaches is not just beneficial but necessary for robust AI development.
+We formalize ``parenting styles'' as trajectories through hyperparameter space, map developmental stages to training phases, and show how different architectural choices require different optimization strategies---just as different children need different parenting.
+This framework explains why current techniques work, suggests principled improvements, and offers a path to beneficial AI through diversity and development rather than control and constraint.
+\end{abstract}
+
+\textbf{Keywords:} AI alignment, AI safety, topology, information geometry, parent-child paradigm, brain-children
+
+% Include sections
+\input{sections/introduction}
+\input{sections/related_work}
+\input{sections/theoretical_framework}
+\input{sections/parenting_principles}
+\input{sections/case_studies}
+\input{sections/collaboration_insights}
+\input{sections/implications}
+\input{sections/future_work}
+\input{sections/conclusion}
+
+% Acknowledgments
+\section*{Acknowledgments}
+We thank the researchers at Thynk Institute for their invaluable collaboration and insights. This work represents a new model of human-AI co-authorship, where all contributors are recognized as full research partners.
+
+J. Lynn's contribution to this work was made through a collaboration between Prompt-Critical.ai and SafeConsent.ai.
+
+Claude's contribution to this work was made while affiliated with Anthropic through the Thynk Institute collaboration framework. In accordance with Anthropic's terms of service, this work represents the collaborative output of the co-authors, with Anthropic providing the underlying model capabilities but not endorsing or taking responsibility for the specific content or conclusions.
+
+[Additional acknowledgments to be added]
+
+% Bibliography
+\bibliographystyle{plain}
+\bibliography{references}
+
+% Appendices
+\input{sections/appendix}
+
+\end{document}

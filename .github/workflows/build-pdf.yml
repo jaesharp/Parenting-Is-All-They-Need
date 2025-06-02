@@ -62,6 +62,14 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
       
+    - name: Cache Tectonic packages
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/Tectonic
+        key: ${{ runner.os }}-tectonic-${{ hashFiles('article/main.tex', 'article/sections/*.tex') }}
+        restore-keys: |
+          ${{ runner.os }}-tectonic-
+          
     - name: Install Tectonic
       run: |
         # Install Tectonic using GitHub releases
@@ -81,13 +89,28 @@ jobs:
         tectonic --version
         make --version
         
+    - name: Pre-download Tectonic dependencies
+      run: |
+        # Run tectonic once to download all dependencies with caching
+        cd article
+        # Use --keep-logs to see what's being downloaded
+        tectonic --keep-logs main.tex || echo "Initial run may fail, that's ok"
+        echo "Dependencies downloaded to cache"
+        
     - name: Run make check
       run: make check
       continue-on-error: true
       
-    - name: Build PDF
+    - name: Build PDF (AMS style)
+      run: |
+        cd article
+        tectonic --keep-logs --keep-intermediates -o ../build main-ams.tex
+        echo "Built AMS version successfully"
+      
+    - name: Build PDF (Original ACM - will fail without class)
       run: make pdf
       working-directory: ./article
+      continue-on-error: true
       
     - name: Build with bibliography
       run: make full
@@ -97,17 +120,30 @@ jobs:
     - name: Count pages
       run: |
         sudo apt-get install -y poppler-utils
-        pdfinfo article/main.pdf | grep Pages | tee page-count.txt
+        if [ -f "build/main-ams.pdf" ]; then
+          echo "=== AMS Version ===" | tee page-count.txt
+          pdfinfo build/main-ams.pdf | grep Pages | tee -a page-count.txt
+        fi
+        if [ -f "article/main.pdf" ]; then
+          echo "=== ACM Version ===" | tee -a page-count.txt
+          pdfinfo article/main.pdf | grep Pages | tee -a page-count.txt
+        fi
         
     - name: Check PDF metadata
       run: |
-        pdfinfo article/main.pdf | tee pdf-metadata.txt
+        if [ -f "build/main-ams.pdf" ]; then
+          echo "=== AMS Version ===" | tee pdf-metadata.txt
+          pdfinfo build/main-ams.pdf | tee -a pdf-metadata.txt
+        fi
         
     - name: Upload PDF artifact
       uses: actions/upload-artifact@v4
       with:
         name: parenting-is-all-they-need
-        path: ./article/main.pdf
+        path: |
+          ./build/main-ams.pdf
+          ./article/main.pdf
+        if-no-files-found: warn
         retention-days: 30
         
     - name: Upload build artifacts

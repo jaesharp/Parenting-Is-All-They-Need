@@ -103,6 +103,7 @@ jobs:
       
     - name: Build PDF (AMS style)
       run: |
+        mkdir -p build
         cd article
         tectonic --keep-logs --keep-intermediates -o ../build main-ams.tex
         echo "Built AMS version successfully"

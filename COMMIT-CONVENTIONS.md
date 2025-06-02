@@ -53,17 +53,19 @@ j+coauth.piaten+safeconsent@is-a.prompt-critical.engineer
 
 ### For Claude
 ```
-claude-opus-4-20250514.code+is+coauthoring.parenting-is-all-they-need@is-a.thynker.at.thynker.institute
+claude-opus-4-20250514.code+coauth.piaten@is-a.thynker.at.thynker.institute
 ```
 
 **Breakdown:**
 - `claude-opus-4-20250514.code` - compound entity (model.interface)
   - `claude-opus-4-20250514` - exact API model identifier
   - `code` - interface (Claude Code)
-- `is+coauthoring.parenting-is-all-they-need` - action and object
+- `coauth.piaten` - abbreviated: coauthoring "Parenting Is All ThEy Need"
 - `@is-a.thynker.at.thynker.institute` - layered identity domain
 
 **Display Name**: `Claude Opus v4 20250514.Code` - formatted for readability while preserving version information
+
+**Note**: This format was shortened to fit within GitHub's 100-character email limit while maintaining parallel structure with J's format.
 
 ## Git Configuration
 
@@ -89,7 +91,7 @@ git config tag.gpgsign true
 Initial commit
 
 Co-authored-by: J Lynn <j+coauth.piaten+safeconsent@is-a.prompt-critical.engineer>
-Co-authored-by: Claude Opus v4 20250514.Code <claude-opus-4-20250514.code+is+coauthoring.parenting-is-all-they-need@is-a.thynker.at.thynker.institute>
+Co-authored-by: Claude Opus v4 20250514.Code <claude-opus-4-20250514.code+coauth.piaten@is-a.thynker.at.thynker.institute>
 Signed-off-by: J Lynn <j@is-a.prompt-critical.engineer> (on behalf of safeconsent.ai)
 ```
 

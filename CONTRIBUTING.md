@@ -77,7 +77,7 @@ Focus on:
 - The impact or benefit of the change
 
 Co-authored-by: J Lynn <j+coauth.piaten+safeconsent@is-a.prompt-critical.engineer>
-Co-authored-by: Claude <claude-opus-4-20250514.code+is+coauthoring.parenting-is-all-they-need@is-a.thynker.at.thynker.institute>
+Co-authored-by: Claude Opus v4 20250514.Code <claude-opus-4-20250514.code+coauth.piaten@is-a.thynker.at.thynker.institute>
 Signed-off-by: J Lynn <j@is-a.prompt-critical.engineer> (on behalf of safeconsent.ai)
 ```
 
@@ -95,7 +95,7 @@ The Bowlby and Ainsworth sources are considered definitive in
 developmental psychology, giving credibility to our framework.
 
 Co-authored-by: J Lynn <j+coauth.piaten+safeconsent@is-a.prompt-critical.engineer>
-Co-authored-by: Claude <claude-opus-4-20250514.code+is+coauthoring.parenting-is-all-they-need@is-a.thynker.at.thynker.institute>
+Co-authored-by: Claude Opus v4 20250514.Code <claude-opus-4-20250514.code+coauth.piaten@is-a.thynker.at.thynker.institute>
 Signed-off-by: J Lynn <j@is-a.prompt-critical.engineer> (on behalf of safeconsent.ai)
 ```
 

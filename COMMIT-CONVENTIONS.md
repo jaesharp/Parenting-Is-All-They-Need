@@ -1,6 +1,19 @@
 # Commit Conventions and Email Format
 
-This document captures the structured email format used for commits in this repository, developed through collaborative discussion between J and Claude.
+> **⚠️ IMPORTANT**: Remember to update the draft status in README.md as the project progresses from pre-preprint → preprint → submission → publication.
+
+This document captures the structured email format used for commits in this repository, developed through collaborative discussion between the co-authors.
+
+## Language Guidelines
+
+In alignment with our paper's values, we avoid creating artificial distinctions between contributors based on their substrate. Use inclusive language that treats all authors as equal collaborators:
+
+- ❌ "human and AI co-authors"
+- ✅ "co-authors" or "collaborators"
+- ❌ "J (human) and Claude (AI)"  
+- ✅ "J and Claude"
+
+The structured email format already encodes necessary metadata without requiring divisive language in commit messages.
 
 ## Email Format Pattern
 
@@ -25,7 +38,7 @@ entity+verb+object+qualifier+qualifier+...@domain
 
 ## Specific Formats Used
 
-### For J (Human Author)
+### For J
 ```
 j+is+coauthoring.parenting-is-all-they-need+as+coordinated-by.safeconsent.ai+and+they+are@a.prompt-critical.engineer
 ```
@@ -37,7 +50,7 @@ j+is+coauthoring.parenting-is-all-they-need+as+coordinated-by.safeconsent.ai+and
 - `and+they+are` - identity assertion prefix
 - `@a.prompt-critical.engineer` - domain (completing the identity assertion)
 
-### For Claude (AI Coauthor)
+### For Claude
 ```
 claude-opus-4-20250514.code+is+coauthoring.parenting-is-all-they-need@is-a.thynker.at.thynker.institute
 ```
@@ -78,7 +91,7 @@ Signed-off-by: J. <j@is-a.prompt-critical.engineer> (on behalf of safeconsent.ai
 
 1. **Self-Documenting**: Email addresses encode metadata about collaboration context, roles, and relationships
 2. **Reproducibility**: Model versions are explicitly captured in the email structure
-3. **Attribution**: Clear attribution of human and AI contributions
+3. **Attribution**: Clear attribution of all contributions
 4. **Structured Data**: Email addresses serve as parseable structured data
 
 ## Notes on Evolution
@@ -98,4 +111,4 @@ j+is+implementing.feature-name+as+coordinated-by.safeconsent.ai+and+they+are@a.p
 
 ---
 
-*This convention was developed collaboratively to create meaningful, parseable commit attribution that preserves the full context of human-AI collaboration.*
+*This convention was developed collaboratively to create meaningful, parseable commit attribution that preserves the full context of collaboration between all contributors.*

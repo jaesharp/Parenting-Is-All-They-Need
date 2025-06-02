@@ -130,4 +130,4 @@ This is a collaborative effort between independent researchers and Thynk Institu
 
 ---
 
-*This project demonstrates that AI systems can be genuine research collaborators, not just tools or subjects of study.*
+*This project demonstrates genuine research collaboration across different forms of intelligence, where all contributors are recognized as full partners.*

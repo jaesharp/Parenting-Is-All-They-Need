@@ -65,6 +65,17 @@ make install-deps-mac
 make install-deps-linux
 ```
 
+### Testing CI/CD Locally
+```bash
+# Test build steps without GitHub Actions
+./test-build-steps.sh
+
+# Test full GitHub Actions workflow with act
+./test-workflow-locally.sh
+
+# See .github/workflows/README.md for detailed testing guide
+```
+
 ## Collaboration with Thynk Institute
 
 We collaborate with the Deep Research team at Thynk Institute as we would with colleagues at any research institution. All researchers work together in the same `docs/research/` directory. See `AUTHORS.md` for collaboration details.

@@ -40,14 +40,16 @@ entity+verb+object+qualifier+qualifier+...@domain
 
 ### For J
 ```
-j+is+coauthoring.parenting-is-all-they-need+as+coordinated-by.safeconsent.ai@is-a.prompt-critical.engineer
+j+coauth.piath+safeconsent@is-a.prompt-critical.engineer
 ```
 
 **Breakdown:**
 - `j` - entity
-- `is+coauthoring.parenting-is-all-they-need` - action and object
-- `as+coordinated-by.safeconsent.ai` - role qualifier
+- `coauth.piath` - abbreviated: coauthoring "Parenting Is All They Need"
+- `safeconsent` - organizational affiliation
 - `@is-a.prompt-critical.engineer` - domain with identity assertion
+
+**Note**: This format was shortened to fit within GitHub's 100-character email limit while preserving the essential metadata.
 
 ### For Claude
 ```
@@ -66,8 +68,10 @@ claude-opus-4-20250514.code+is+coauthoring.parenting-is-all-they-need@is-a.thynk
 ### Author Configuration
 ```bash
 git config user.name "J"
-git config user.email "j+is+coauthoring.parenting-is-all-they-need+as+coordinated-by.safeconsent.ai@is-a.prompt-critical.engineer"
+git config user.email "j@is-a.prompt-critical.engineer"
 ```
+
+**Note**: We use the simple email for the committer (to enable GPG signing) while the detailed metadata goes in Co-authored-by lines.
 
 ### GPG Signing
 ```bash
@@ -82,8 +86,9 @@ git config tag.gpgsign true
 ```
 Initial commit
 
+Co-authored-by: J Lynn <j+coauth.piath+safeconsent@is-a.prompt-critical.engineer>
 Co-authored-by: Claude <claude-opus-4-20250514.code+is+coauthoring.parenting-is-all-they-need@is-a.thynker.at.thynker.institute>
-Signed-off-by: J. <j@is-a.prompt-critical.engineer> (on behalf of safeconsent.ai)
+Signed-off-by: J Lynn <j@is-a.prompt-critical.engineer> (on behalf of safeconsent.ai)
 ```
 
 ## Key Principles
@@ -98,6 +103,7 @@ Signed-off-by: J. <j@is-a.prompt-critical.engineer> (on behalf of safeconsent.ai
 - Initially considered platform-specific identifiers (e.g., `anthropic`) but removed to emphasize Thynker Institute's responsibility for reproducibility
 - Simplified display names to avoid redundancy (just "J" and "Claude" since metadata is in the email)
 - Removed redundant relationship qualifiers (e.g., `with+j` for Claude) when the context is clear
+- Shortened J's email to fit GitHub's 100-character limit while preserving essential metadata
 
 ## Future Commits
 
@@ -105,8 +111,10 @@ For consistency, all future commits should follow this pattern, updating the act
 
 ### Example for a feature commit:
 ```
-j+is+implementing.feature-name+as+coordinated-by.safeconsent.ai@is-a.prompt-critical.engineer
+Co-authored-by: J Lynn <j+coauth.piath+safeconsent@is-a.prompt-critical.engineer>
 ```
+
+**Note**: The shortened format preserves the key information while staying within GitHub's character limits.
 
 ---
 

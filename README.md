@@ -5,7 +5,7 @@ A collaborative research article exploring AI development through the lens of pa
 ## Project Structure
 
 ```
-acm-ai-alignment-article/
+parenting-is-all-they-need/
 ├── article/              # LaTeX source files
 │   ├── main.tex         # Main article file
 │   ├── sections/        # Individual sections

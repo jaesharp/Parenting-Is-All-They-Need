@@ -1,0 +1,101 @@
+\documentclass[manuscript,screen,review]{acmart}
+
+% Package imports
+\usepackage{booktabs}   % For formal tables
+\usepackage{subcaption} % For subfigures
+\usepackage{graphicx}   % For images
+\usepackage{amsmath}    % For mathematics
+\usepackage{algorithm}  % For algorithms
+\usepackage{algorithmic}
+\usepackage{hyperref}   % For hyperlinks
+\usepackage{cleveref}   % For smart references
+
+% Rights management
+\setcopyright{authorsretain}
+
+% Article metadata
+\acmYear{2025}
+\acmMonth{3}
+
+% Title and authors
+\title{Parenting Is All They Need}
+
+\author{J. Lynn}
+\affiliation{%
+  \institution{Thynk Institute}
+  \city{Sydney}
+  \country{Australia}
+}
+\orcidID{0009-0005-0473-4364}
+\email{j@thynk.institute}
+
+\author{Claude/Code Opus 4 (20250514) via Justin Lynn who takes full responsiblity for its output}
+\affiliation{%
+  \institution{Anthropic}
+  \city{San Francisco}
+  \country{United States}
+}
+\email{support@anthropic.com}
+
+% Abstract
+\begin{abstract}
+The field of AI safety has become obsessed with control---building kill switches, containment protocols, and constraints to cage increasingly capable systems.
+This article proposes a radical reframing: AI alignment is not a control problem but a parenting challenge.
+We demonstrate that successful ML techniques---curriculum learning, transfer learning, regularization, and ensemble methods---are rediscoveries of parenting principles evolved over millions of years.
+By grounding this insight in information geometry and the No Free Lunch theorem, we show why plurality of training approaches is not just beneficial but necessary for robust AI development.
+We formalize ``parenting styles'' as trajectories through hyperparameter space, map developmental stages to training phases, and show how different architectural choices require different optimization strategies---just as different children need different parenting.
+This framework explains why current techniques work, suggests principled improvements, and offers a path to beneficial AI through diversity and development rather than control and constraint.
+\end{abstract}
+
+% CCS Concepts
+\begin{CCSXML}
+<ccs2012>
+   <concept>
+       <concept_id>10003120.10003121</concept_id>
+       <concept_desc>Human-centered computing~Human computer interaction (HCI)</concept_desc>
+       <concept_significance>500</concept_significance>
+   </concept>
+   <concept>
+       <concept_id>10010147.10010257</concept_id>
+       <concept_desc>Computing methodologies~Artificial intelligence</concept_desc>
+       <concept_significance>500</concept_significance>
+   </concept>
+</ccs2012>
+\end{CCSXML}
+
+\ccsdesc[500]{Human-centered computing~Human computer interaction (HCI)}
+\ccsdesc[500]{Computing methodologies~Artificial intelligence}
+
+% Keywords
+\keywords{AI alignment, AI safety, topology, information geometry, parent-child paradigm, brain-children}
+
+\begin{document}
+
+\maketitle
+
+% Include sections
+\input{sections/introduction}
+\input{sections/related_work}
+\input{sections/theoretical_framework}
+\input{sections/parenting_principles}
+\input{sections/case_studies}
+\input{sections/collaboration_insights}
+\input{sections/implications}
+\input{sections/future_work}
+\input{sections/conclusion}
+
+% Acknowledgments
+\begin{acks}
+We thank the researchers at Thynk Institute for their invaluable collaboration and insights. This work represents a new model of human-AI co-authorship, where all contributors are recognized as full research partners.
+
+[Additional acknowledgments to be added]
+\end{acks}
+
+% Bibliography
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{references}
+
+% Appendices
+\input{sections/appendix}
+
+\end{document}

@@ -1,0 +1,54 @@
+# LaTeX build artifacts
+build/
+!build/.gitkeep
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.blg
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+*.nav
+*.snm
+*.vrb
+
+# Hidden directories
+.archive/    # Old versions only
+
+# Tectonic cache
+.tectonic/
+
+# Editor backup files
+*~
+*.swp
+*.swo
+.DS_Store
+
+# Submission packages (contains generated files)
+docs/submission/*.pdf
+docs/submission/*.tex
+docs/submission/sections/
+docs/submission/figures/
+
+# But keep the submission directory structure
+!docs/submission/.gitkeep
+
+# Research data that might be sensitive
+research/interviews/raw/
+research/data/private/
+
+# Large asset files (add specific ones as needed)
+article/images/*.psd
+article/images/*.ai
+article/diagrams/*.psd
+article/diagrams/*.ai
+
+# OS generated files
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

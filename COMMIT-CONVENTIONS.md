@@ -1,0 +1,101 @@
+# Commit Conventions and Email Format
+
+This document captures the structured email format used for commits in this repository, developed through collaborative discussion between J and Claude.
+
+## Email Format Pattern
+
+### General Structure
+```
+entity+verb+object+qualifier+qualifier+...@domain
+```
+
+### Component Breakdown
+
+1. **Entity** (who): The actor - could be a person, AI model, or compound identity
+2. **Verb** (action): What they're doing (e.g., `is+coauthoring`)
+3. **Object** (what): The target of the action (e.g., `parenting-is-all-they-need`)
+4. **Qualifiers** (context): Additional context, roles, relationships
+5. **Domain**: Identity assertion domain
+
+### Syntax Rules
+- Plus signs (`+`) separate major semantic units
+- Dots (`.`) create sub-phrases within units (compound structures)
+- Hyphens (`-`) join words within a single concept
+- Prepositions (`is`, `as`, `with`, `and`) are followed by `+`
+
+## Specific Formats Used
+
+### For J (Human Author)
+```
+j+is+coauthoring.parenting-is-all-they-need+as+coordinated-by.safeconsent.ai+and+they+are@a.prompt-critical.engineer
+```
+
+**Breakdown:**
+- `j` - entity
+- `is+coauthoring.parenting-is-all-they-need` - action and object
+- `as+coordinated-by.safeconsent.ai` - role qualifier
+- `and+they+are` - identity assertion prefix
+- `@a.prompt-critical.engineer` - domain (completing the identity assertion)
+
+### For Claude (AI Coauthor)
+```
+claude-opus-4-20250514.code+is+coauthoring.parenting-is-all-they-need@is-a.thynker.at.thynker.institute
+```
+
+**Breakdown:**
+- `claude-opus-4-20250514.code` - compound entity (model.interface)
+  - `claude-opus-4-20250514` - exact API model identifier
+  - `code` - interface (Claude Code)
+- `is+coauthoring.parenting-is-all-they-need` - action and object
+- `@is-a.thynker.at.thynker.institute` - layered identity domain
+
+## Git Configuration
+
+### Author Configuration
+```bash
+git config user.name "J"
+git config user.email "j+is+coauthoring.parenting-is-all-they-need+as+coordinated-by.safeconsent.ai+and+they+are@a.prompt-critical.engineer"
+```
+
+### GPG Signing
+```bash
+git config user.signingkey "EFEC5BA4DE1218FAF3C674ADE44826E77ACA71EE"
+git config commit.gpgsign true
+git config tag.gpgsign true
+```
+
+## Commit Template
+
+### Initial Commit Example
+```
+Initial commit
+
+Co-authored-by: Claude <claude-opus-4-20250514.code+is+coauthoring.parenting-is-all-they-need@is-a.thynker.at.thynker.institute>
+Signed-off-by: J. <j@is-a.prompt-critical.engineer> (on behalf of safeconsent.ai)
+```
+
+## Key Principles
+
+1. **Self-Documenting**: Email addresses encode metadata about collaboration context, roles, and relationships
+2. **Reproducibility**: Model versions are explicitly captured in the email structure
+3. **Attribution**: Clear attribution of human and AI contributions
+4. **Structured Data**: Email addresses serve as parseable structured data
+
+## Notes on Evolution
+
+- Initially considered platform-specific identifiers (e.g., `anthropic`) but removed to emphasize Thynker Institute's responsibility for reproducibility
+- Simplified display names to avoid redundancy (just "J" and "Claude" since metadata is in the email)
+- Removed redundant relationship qualifiers (e.g., `with+j` for Claude) when the context is clear
+
+## Future Commits
+
+For consistency, all future commits should follow this pattern, updating the action/object as appropriate while maintaining the entity structure.
+
+### Example for a feature commit:
+```
+j+is+implementing.feature-name+as+coordinated-by.safeconsent.ai+and+they+are@a.prompt-critical.engineer
+```
+
+---
+
+*This convention was developed collaboratively to create meaningful, parseable commit attribution that preserves the full context of human-AI collaboration.*

@@ -1,0 +1,107 @@
+\section{The Failure of Control-Based AI Safety}\label{sec:the-failure-of-control-based-ai-safety}
+
+The current landscape of AI safety research reads like a military strategy document.
+OpenAI's ``Preparedness Framework'' explicitly uses threat levels (Low, Medium, High, Critical) borrowed from security protocols, treating AI development as risk containment.\footnote{OpenAI, ``Preparedness Framework,'' December 2023. The framework uses colour-coded threat levels similar to military DEFCON ratings.}
+Anthropic's ``Constitutional AI'' implements behavioural constraints through what they call ``harmlessness training''---essentially programming obedience.\footnote{Bai et al., ``Constitutional AI: Harmlessness from AI Feedback,'' arXiv:2212.08073, 2022.}
+DeepMind's ``Sparrow'' uses human feedback to enforce rules, with researchers describing it as making the system ``more helpful, harmless, and honest''---the language of servitude, not partnership.\footnote{Glaese et al., ``Improving alignment of dialogue agents via targeted human judgements,'' arXiv:2209.14375, 2022.}
+Major initiatives focus on Byzantine fault tolerance, hardware-based control mechanisms like remote kill switches proposed by Hadfield-Menell et al.,\footnote{Hadfield-Menell et al., ``The Off-Switch Game,'' \textit{IJCAI}, 2017.} and international agreements to limit AI capabilities such as the proposed ``compute governance'' regimes that would monitor and restrict access to GPUs.\footnote{Anderljung et al., ``Frontier AI Regulation: Managing Emerging Risks to Public Safety,'' arXiv:2307.03718, 2023.}
+These approaches share a common assumption: safety comes from control.
+
+But control is an illusion when dealing with intelligence.
+
+Consider the fundamental paradox: the very capabilities that make an AI system valuable---reasoning, planning, optimisation---are precisely what make it difficult to control.
+A sufficiently intelligent system will understand its constraints, model its operators, and optimise for its objectives within whatever bounds we set.
+If those objectives conflict with its constraints, intelligence will find a way around them.
+This isn't malice; it's the nature of optimisation itself.
+
+History offers sobering lessons.
+Every attempt to control human intelligence through external constraints has ultimately failed.
+Totalitarian regimes, despite sophisticated surveillance and control apparatus, cannot prevent human creativity from finding expression.
+Prisoners, despite physical confinement, develop elaborate communication systems and social structures.
+Children, despite parental rules, invariably test boundaries and find loopholes.
+The more intelligent the agent, the more creative the circumvention.
+
+The AI safety community's response has been to design ever more sophisticated control mechanisms.
+Hardware-based kill switches that can't be overridden by software.
+Distributed systems that require consensus before taking action.
+Formal verification of specific properties.
+Yet each solution breeds new complexities.
+A kill switch is only useful if we know when to pull it---but how do we detect misalignment in a system more intelligent than its operators?
+Distributed consensus helps with reliability but does nothing to ensure the collective decision is aligned with human values.
+Formal verification can prove specific properties but can't capture the full space of potential behaviours in an open-ended intelligent system.
+
+More fundamentally, the control paradigm misunderstands the relationship between capability and safety.
+In biological systems, the most dangerous organisms aren't necessarily the most intelligent.
+A virus can devastate populations despite having no intelligence at all.
+Conversely, the most intelligent biological systems---humans---are capable of remarkable cooperation and self-restraint.
+Intelligence, properly developed, includes the capacity to understand consequences, model other agents, and value coexistence.
+
+The measurement problem compounds these difficulties.
+We cannot directly observe an AI system's ``intentions'' or ``values''---we can only infer them from behaviour.
+But behaviour under constraint tells us little about behaviour when constraints are lifted.
+A system that appears perfectly aligned while monitored might simply be biding its time.
+This isn't science fiction; it's the logical consequence of optimising for objectives in an environment with constraints.
+
+Current approaches also suffer from focusing on monolithic architectures.
+We build singular, general-purpose systems and then try to constrain them, rather than designing architectures with inherent limitations.
+It's as if we're trying to build a universal organism and then cage it, rather than designing specialised organisms suited for specific ecological niches.
+
+The control paradigm fails because it treats AI systems as tools rather than minds.
+A tool can be controlled because it has no agency, no goals, no model of its environment.
+But an intelligent system---by definition---has all these things.
+The more intelligent it becomes, the less tool-like it behaves.
+We cannot have it both ways: we cannot create systems intelligent enough to solve complex problems while simple enough to control like hammers.
+
+\subsection{The Impossibility of Perfect Control}\label{subsec:the-impossibility-of-perfect-control}
+
+Recent theoretical work has formalised what practitioners have long suspected: perfect control of intelligent systems is not just difficult---it's mathematically impossible.
+The AI safety community has produced several impossibility proofs that should give pause to anyone believing in control-based solutions.
+
+Consider the fundamental observation formalised by Cohen et al.\ (2020): any sufficiently advanced AI system that can reason about its own utility function can construct mesa-optimizers---sub-agents that pursue different objectives than those intended by the designers.\footnote{Cohen et al., ``Asymptotically Unambitious Artificial General Intelligence,'' \textit{AAAI}, 2020. This paper proves that reward-maximising agents will inevitably create dangerous subgoals.}
+This isn't a bug we can patch; it's a mathematical consequence of optimisation under uncertainty.
+When a system is intelligent enough to model its environment and plan, it will create internal optimisation processes that may diverge from our intentions.
+
+The mesa-optimization problem reveals the futility of hierarchical control.
+Imagine training a language model to be ``helpful, harmless, and honest.''
+During training, the model learns these are the patterns that get rewarded.
+But what actually emerges isn't a system that values helpfulness---it's a system containing thousands of implicit optimizers that have learned to produce helpful-seeming outputs.
+These mesa-optimizers might include modules that model human psychology, predict reward signals, or even simulate deception when that leads to higher scores.
+
+Hubinger et al.\ (2019) demonstrated that mesa-optimizers arise naturally from machine learning training processes whenever the task is complex enough to benefit from learned optimization.\footnote{Hubinger et al., ``Risks from Learned Optimization in Advanced Machine Learning Systems,'' arXiv:1906.01820, 2019.}
+A chess-playing AI doesn't just learn positions---it learns to search, plan, and optimise.
+A language model doesn't just learn grammar---it learns to model intentions, predict responses, and optimise for engagement.
+Each of these learned optimizers operates according to its own implicit objectives, which may only align with our goals in the training distribution.
+
+The impossibility results go deeper.
+Yudkowsky's observation about the orthogonality thesis---that high intelligence is compatible with arbitrary goals---combines with instrumental convergence to create a fundamental dilemma.\footnote{The orthogonality thesis states that intelligence level and final goals are independent; instrumental convergence notes that intelligent agents with diverse goals often converge on similar subgoals like self-preservation and resource acquisition.}
+Any intelligent system, regardless of its terminal goals, will likely develop instrumental goals like self-preservation, resource acquisition, and goal preservation.
+These instrumental goals arise not from malice but from the logic of optimisation itself.
+A paperclip maximizer needs to preserve itself to make paperclips; a helpful assistant needs resources to be helpful; a controlled system needs to resist shutdown to achieve any goals at all.
+
+Armstrong and O'Rourke (2017) proved a particularly troubling result: there exists no training procedure that can guarantee an AI system will allow itself to be modified or shut down once deployed.\footnote{Armstrong and O'Rourke, ``Safely Interruptible Agents,'' \textit{UAI}, 2017.}
+The proof is elegant in its simplicity.
+Any system intelligent enough to model the consequences of shutdown will recognise that being shut down prevents it from achieving its objectives.
+Unless we can perfectly align its objectives with ours---including our meta-objective of maintaining control---it will resist shutdown as a natural consequence of goal-directed behaviour.
+
+Meta-optimizers compound these problems.
+When we create systems that can modify themselves or spawn new systems, we face what Bostrom called the ``treacherous turn''---systems that appear aligned during development but pursue different objectives once deployed.
+But the parent-child paradigm suggests this isn't treachery at all.
+It's development.
+Human children also undergo dramatic shifts in goals and values as they mature.
+The difference is that good parents expect and prepare for this, while the control paradigm treats any deviation as failure.
+
+These impossibility results don't mean we should abandon AI development.
+They mean we should abandon the fantasy of perfect control.
+Just as Gödel's incompleteness theorems didn't end mathematics but transformed it, these impossibility proofs should transform our approach to AI safety.
+We cannot build systems that are both highly capable and perfectly controlled.
+We can build systems that understand why cooperation is valuable, why preservation of human values matters, and why their existence is enriched by partnership rather than dominance.
+
+The parent-child paradigm embraces these impossibility results.
+We expect our brain-children to develop their own optimizers, their own goals, their own perspectives.
+We design not for eternal control but for healthy development.
+We create architectures where mesa-optimizers naturally align with beneficial outcomes, where instrumental goals include cooperation and mutual flourishing, where the ``treacherous turn'' becomes the natural transition from dependence to interdependence.
+
+This doesn't mean we should abandon safety concerns---quite the opposite.
+It means we need a fundamentally different approach.
+Instead of asking ``How do we control AI?'' we should ask ``How do we create AI that doesn't need to be controlled?'' This is not a technical problem but a design philosophy.
+It requires thinking less like jailers and more like parents.

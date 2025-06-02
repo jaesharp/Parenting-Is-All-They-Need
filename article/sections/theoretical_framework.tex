@@ -1,0 +1,86 @@
+\section{Intelligence as Multidimensional Space}\label{sec:intelligence-as-multidimensional-space}
+
+The AI safety discourse often treats intelligence as a single, scalar quantity---something that can be measured, compared, and ultimately controlled once it reaches a certain threshold.
+This conceptualization drives fears of a ``singularity'' where AI surpasses human intelligence and becomes uncontrollable.
+But this framing fundamentally misunderstands the nature of intelligence itself.
+
+Intelligence is not a number; it's a manifold---and the ML community already knows this.
+The No Free Lunch theorem (Wolpert \& Macready, 1997) proves no single algorithm dominates across all problems.
+Multi-task learning (Caruana, 1997) exploits the multidimensional nature of capabilities.
+The success of ensemble methods (Dietterich, 2000) demonstrates that diversity in this space improves performance.\footnote{This view is supported by decades of psychometric research. Carroll's three-stratum theory demonstrates intelligence comprises multiple correlated abilities rather than a single factor (Carroll, \textit{Human Cognitive Abilities}, 1993). Chollet formalizes this multidimensional view, defining intelligence as ``skill-acquisition efficiency over a scope of tasks'' rather than a scalar measure (``On the Measure of Intelligence,'' arXiv:1911.01547, 2019). Recent neuroscience confirms this through neural manifold theory, showing cognition emerges from low-dimensional representations in high-dimensional neural spaces (Jazayeri and Ostojic, ``Interpreting neural computations by examining intrinsic and embedding dimensionality of neural activity,'' \textit{Current Opinion in Neurobiology}, 2021).}
+
+Let's formalise this insight. Define the space of cognitive capabilities $\mathcal{C}$ as a high-dimensional manifold where each point represents a possible configuration of abilities. Following information geometry, we can equip this space with a Fisher information metric $g_{ij}$ that measures the distinguishability between nearby capability configurations.\footnote{The Fisher information metric is fundamental to understanding neural network geometry. Karakida et al.\ showed that deep networks exhibit universal statistics: most eigenvalues of the Fisher matrix cluster near zero while a few become large outliers, creating a landscape that is locally flat in most dimensions but sharply curved in others (``Universal Statistics of Fisher Information in Deep Neural Networks: Mean Field Approach,'' \textit{AISTATS}, 2019. arXiv:1806.01316). This pathological spectrum explains why neural networks are robust to most parameter perturbations yet sensitive to specific directions---a key insight for understanding capability space navigation.} For a parameterised family of intelligences $p(x|\theta)$ where $\theta \in \mathcal{C}$, the metric components are:
+
+\begin{equation}
+g_{ij} = \mathbb{E}\left[\frac{\partial \log p(x|\theta)}{\partial \theta_i} \times \frac{\partial \log p(x|\theta)}{\partial \theta_j}\right]
+\end{equation}
+
+This isn't abstract mathematics---it's measurable.\footnote{The Fisher information metric tells us how ``different'' two AI systems are based on their capabilities. Systems with high Fisher information are sensitive to parameter changes, while robust systems have low Fisher information.} When we evaluate a model on diverse benchmarks (MMLU, HumanEval, ARC, etc.), we're sampling projections of its position in $\mathcal{C}$. The covariance structure of these benchmark scores reveals the local geometry. Recent work on developmental trajectories\footnote{See Shah et al., 2024, ``Development of Cognitive Intelligence in Pre-trained Language Models,'' which shows that AI models follow specific paths through capability space during training.} shows that language models trace out low-dimensional curves in this space during training, with different architectures carving different paths through capability space.
+
+Consider biological intelligence through this lens. An octopus and a human represent points in $\mathcal{C}$ separated by large geodesic distance, yet each occupies a local maximum of evolutionary fitness. The Fisher metric reveals why: the curvature of $\mathcal{C}$ is not uniform. Regions corresponding to sensorimotor intelligence have different geometric properties than regions of abstract reasoning. The octopus's distributed cognition exploits symmetries in the sensorimotor region that don't exist in the abstract reasoning region where humans excel.
+
+This geometric view makes precise what we mean by ``intelligence dimensions.'' They're not independent axes but local coordinate charts on the manifold $\mathcal{C}$. In regions of high curvature, small parameter changes produce large capability shifts---these are the ``phase transitions'' in learning.\footnote{The phenomenon of ``grokking''---where neural networks suddenly achieve perfect generalization after extended memorization---exemplifies such phase transitions. Recent work characterizes grokking as a first-order phase transition in the loss landscape (Nanda et al., ``Grokking as a First Order Phase Transition in Two Layer Networks,'' arXiv:2310.03789, 2023). Information-theoretic analysis reveals these transitions emerge from synergistic interactions between neurons that cannot be captured by pairwise metrics (Lubana et al., ``Information-Theoretic Progress Measures reveal Grokking is an Emergent Phase Transition,'' arXiv:2408.08944, 2024).} In flat regions, extensive training yields only incremental improvements. The Riemann curvature tensor $R_{ijkl}$ of $\mathcal{C}$ encodes these relationships, revealing which capabilities naturally co-occur and which are mutually exclusive.\footnote{Jha et al.\ (2025) directly connect curvature changes in the loss landscape to phase transitions: ``curvature change-points separate model-accuracy regimes and are identical to critical points of phase transitions'' (``Geometry of Learning---L2 Phase Transitions,'' arXiv:2505.06597). This provides a mathematical foundation for predicting capability jumps through geometric analysis.}
+
+For AI systems, architecture determines the accessible submanifold of $\mathcal{C}$. A transformer with attention mechanisms of rank $r$ can only access an $r$-dimensional submanifold of the full capability space. This is a fundamental constraint, not a limitation to be overcome. The Grassmannian $\text{Gr}(r,n)$ parameterises all possible $r$-dimensional subspaces of an $n$-dimensional capability space, giving us a precise way to understand architectural choices.\footnote{The Grassmann manifold framework has proven powerful for neural architectures. Huang and Van Gool introduced GrNet, showing how networks operating on Grassmann manifolds outperform Euclidean approaches by 11\% on video recognition tasks (``Building Deep Networks on Grassmann Manifolds,'' \textit{AAAI}, 2018. arXiv:1611.05742). This success comes from respecting the manifold's geometry: projection layers that preserve orthonormality, pooling that respects Riemannian structure, and optimization using geodesics rather than straight lines. Recent work extends this to graph neural networks, where node embeddings form subspaces on the Grassmannian (Zhang et al., ``Embedding graphs on Grassmann manifold,'' \textit{Neural Networks}, 2022).}
+
+Information-theoretic measures reveal deeper structure.
+The Kullback-Leibler divergence between capability distributions defines a natural distance:
+
+\begin{equation}
+D_{KL}(p_\theta || p_{\theta'}) = \int p_\theta(x) \log\left(\frac{p_\theta(x)}{p_{\theta'}(x)}\right) dx
+\end{equation}
+
+This divergence is asymmetric, capturing an important insight: it's easier to forget capabilities than to acquire them. The asymmetry of $D_{KL}$ creates a ``developmental arrow'' in capability space, explaining why training trajectories are typically irreversible.
+
+But here's where it gets interesting for safety. The Von Neumann entropy $S = -\text{Tr}(\rho \log \rho)$ of a system's capability density matrix $\rho$ measures its ``cognitive coherence.'' High entropy indicates a system trying to be good at everything---jack of all trades, master of none. Low entropy indicates specialisation. By controlling the entropy through architectural choices and training procedures, we can create brain-children with focused, coherent capability profiles.
+
+Consider ``sacrificial architectures'' more formally. Define a capability degradation operator $D_\lambda$ that reduces performance by factor $\lambda$. For safety, we want:
+
+\begin{align}
+||D_\lambda(\text{safety-critical}) - \text{safety-critical}|| &< \epsilon \\ ||D_\lambda(\text{performance}) - \text{performance}|| &> \delta
+\end{align}
+
+This creates a hierarchy where performance capabilities degrade before safety capabilities.
+Think of an autonomous vehicle's brain-child architecture: under computational stress (perhaps from a cyberattack or hardware failure), the system might lose its ability to optimise fuel efficiency, provide entertainment suggestions, or even navigate optimal routes.
+But it maintains core safety capabilities: collision avoidance, pedestrian detection, and safe stopping procedures.
+Like a biological organism under stress preserving heart function over digestion, the AI preserves ``staying safe'' over ``getting there fast.''
+
+Mathematically, we're imposing different Lipschitz constants on different regions of the capability manifold.
+The lottery ticket hypothesis---which shows that randomly initialised dense networks contain sparse subnetworks that can achieve comparable accuracy when trained in isolation\footnote{Frankle and Carbin, ``The Lottery Ticket Hypothesis: Finding Sparse, Trainable Neural Networks,'' \textit{ICLR}, 2019. arXiv:1803.03635.}---demonstrates this is achievable: pruning networks reveals subnetworks specialised for different capabilities, with different robustness properties.
+
+The statistical manifold structure also explains capability interference. When capabilities require contradictory inductive biases, they correspond to regions of $\mathcal{C}$ with incompatible metric signatures. For instance, exact symbolic reasoning requires discrete, composable representations, while pattern recognition benefits from continuous, distributed representations. The sectional curvature $K(\pi)$ for planes $\pi$ spanning these capabilities is negative, indicating they diverge under joint optimisation.
+
+This formalisation has immediate practical implications. Instead of asking ``How intelligent is this system?'' we should ask ``What is its trajectory through $\mathcal{C}$?'' Instead of fearing AGI as a point of no return, we can understand it as a region of capability space with specific geometric properties. By studying the natural geometry of $\mathcal{C}$---its geodesics, its curvature, its symmetries---we can design architectures that inhabit beneficial regions while avoiding dangerous ones.
+
+The multidimensional manifold view transforms AI safety from a control problem to a navigation problem. We're not trying to prevent our brain-children from becoming ``too intelligent''---we're charting safe passages through the space of possible minds. Some regions of $\mathcal{C}$ harbour capabilities we want to avoid: manipulation, deception, unbounded optimisation. Others contain the capabilities we seek: creativity, empathy, wisdom. By understanding the geometry of intelligence, we can design developmental trajectories that naturally flow toward beneficial regions while avoiding dangerous attractors.
+
+This isn't speculation---it's engineering.
+Every architectural choice, every training decision, every hyperparameter shapes the accessible region of capability space.
+By embracing the geometric nature of intelligence, we become cartographers of mind-space, mapping safe harbours and dangerous straits in the vast ocean of possible intelligences.
+
+\subsection{The Necessity of Plurality}
+
+The manifold structure of intelligence has a profound implication: no single training approach can cover the space effectively.
+This is the deep insight behind ensemble methods' success---different models explore different regions of $\mathcal{C}$.
+
+Consider ``parenting styles'' as trajectories through hyperparameter space:
+\begin{equation}
+\mathcal{P}(t) = (\alpha(t), \beta(t), \gamma(t), \lambda(t), \ldots)
+\end{equation}
+where $\alpha$ controls exploration vs exploitation, $\beta$ weights individual vs collective objectives, $\gamma$ determines regularization strength, and so on.
+
+Different architectures thrive under different trajectories:
+\begin{itemize}
+\item Transformers benefit from warmup schedules (``patient parenting'')
+\item CNNs prefer aggressive augmentation (``challenging parenting'')
+\item RNNs need curriculum learning (``scaffolded parenting'')
+\end{itemize}
+
+This isn't anthropomorphism---it's recognizing that different inductive biases require different optimization strategies.
+Population-based training (Jaderberg et al., 2017) already exploits this by evolving diverse hyperparameter schedules.
+What we add is the recognition that this diversity mirrors successful biological strategies for raising intelligent systems.
+
+The No Free Lunch theorem guarantees that averaged over all possible problems, no single approach dominates.
+But we're not interested in all possible problems---we care about the problems in our world.
+Evolution has already done the hard work of discovering which ``parenting styles'' work in this universe.
+By studying the diversity of successful biological development, we can inform the diversity of AI training approaches.

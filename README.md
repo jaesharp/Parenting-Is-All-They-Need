@@ -78,17 +78,17 @@ Note: Some aspects of our researchers' attribution requirements and academic cre
 
 ## Article Overview
 
-The article explores AI alignment through the metaphor of parenting:
-- Developmental stages of AI systems
-- Parenting as a framework for AI development
+The article explores system alignment through the metaphor of parenting:
+- Developmental stages of computational systems
+- Parenting as a framework for technology development
 - Trust and autonomy balance
-- Long-term thinking in AI design
+- Long-term thinking in system design
 
 ## Research Status
 
 ### Claims Requiring Citations: 23 total
 - **Neuroscience/Biology**: 8 claims
-- **AI/Computer Science**: 7 claims
+- **Computer Science**: 7 claims
 - **Psychology/Development**: 5 claims
 - **Interdisciplinary**: 3 claims
 

@@ -1,5 +1,8 @@
 # Parenting Is All They Need
 
+> **📝 DRAFT STATUS: Pre-Preprint**  
+> This article is currently in active development. Content, citations, and conclusions are subject to change. We welcome feedback and collaboration as we work toward completion.
+
 A collaborative research article exploring AI development through the lens of parenting, written in partnership with Thynk Institute.
 
 ## Project Structure

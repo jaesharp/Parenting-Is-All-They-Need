@@ -1,5 +1,7 @@
 # Parenting Is All They Need
 
+[![Build and Check](https://github.com/jaesharp/Parenting-Is-All-They-Need/actions/workflows/build-pdf.yml/badge.svg)](https://github.com/jaesharp/Parenting-Is-All-They-Need/actions/workflows/build-pdf.yml)
+
 > **📝 DRAFT STATUS: Pre-Preprint**  
 > This article is currently in active development. Content, citations, and conclusions are subject to change. We welcome feedback and collaboration as we work toward completion.
 

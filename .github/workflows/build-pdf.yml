@@ -1,0 +1,153 @@
+name: Build and Check
+
+on:
+  push:
+    branches: [ main, dev ]
+  pull_request:
+    branches: [ main, dev ]
+  workflow_dispatch:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Install LaTeX linting tools
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y chktex lacheck
+        pip install --user proselint
+        
+    - name: Run ChkTeX
+      run: |
+        find article/sections -name "*.tex" -exec chktex -q {} \; | tee chktex-report.txt
+        # ChkTeX returns non-zero for warnings, so we don't fail the build
+      continue-on-error: true
+      
+    - name: Run lacheck
+      run: |
+        find article -name "*.tex" -exec lacheck {} \; | tee lacheck-report.txt
+      continue-on-error: true
+      
+    - name: Run proselint on LaTeX content
+      run: |
+        find article/sections -name "*.tex" -exec proselint {} \; | tee proselint-report.txt
+      continue-on-error: true
+      
+    - name: Check for common LaTeX issues
+      run: |
+        echo "Checking for common issues..."
+        # Check for undefined references
+        ! grep -r "undefined" article/*.log 2>/dev/null
+        # Check for overfull hboxes (lines too long)
+        ! grep -r "Overfull.*hbox" article/*.log 2>/dev/null || echo "::warning::Found overfull hboxes"
+      continue-on-error: true
+      
+    - name: Upload lint reports
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: lint-reports
+        path: |
+          *-report.txt
+        retention-days: 7
+
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Install Tectonic
+      run: |
+        curl --proto '=https' --tlsv1.2 -fsSL https://drop-sh.fullyjustified.net | sh
+        echo "$HOME/.local/bin" >> $GITHUB_PATH
+        
+    - name: Install additional tools
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y make
+        
+    - name: Verify installations
+      run: |
+        tectonic --version
+        make --version
+        
+    - name: Run make check
+      run: make check
+      continue-on-error: true
+      
+    - name: Build PDF
+      run: make pdf
+      working-directory: ./article
+      
+    - name: Build with bibliography
+      run: make full
+      working-directory: ./article
+      continue-on-error: true  # Bibliography might fail if refs are incomplete
+      
+    - name: Count pages
+      run: |
+        sudo apt-get install -y poppler-utils
+        pdfinfo article/main.pdf | grep Pages | tee page-count.txt
+        
+    - name: Check PDF metadata
+      run: |
+        pdfinfo article/main.pdf | tee pdf-metadata.txt
+        
+    - name: Upload PDF artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: parenting-is-all-they-need
+        path: ./article/main.pdf
+        retention-days: 30
+        
+    - name: Upload build artifacts
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-artifacts
+        path: |
+          ./article/*.log
+          page-count.txt
+          pdf-metadata.txt
+        retention-days: 7
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Download PDF artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: parenting-is-all-they-need
+        
+    - name: Create timestamp
+      id: timestamp
+      run: echo "date=$(date +'%Y%m%d-%H%M%S')" >> $GITHUB_OUTPUT
+      
+    - name: Create draft release
+      uses: softprops/action-gh-release@v2
+      with:
+        draft: true
+        tag_name: draft-${{ steps.timestamp.outputs.date }}
+        name: Draft Build ${{ steps.timestamp.outputs.date }}
+        body: |
+          ## Draft Build
+          
+          This is an automated draft build of "Parenting Is All They Need".
+          
+          **Status**: Pre-preprint draft - content subject to change
+          
+          ### Changes
+          - See commit history for recent updates
+          
+          ### Note
+          This is not a final version. Citations and conclusions may change.
+        files: main.pdf
